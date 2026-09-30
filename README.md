@@ -1,4 +1,4 @@
-# team1-network: Private Network Service Platform (Phase 1)
+Private Network Service Platform 
 
 ## Layout
 - `config/env.sh` set your team name, IPs, ports (edit first)
