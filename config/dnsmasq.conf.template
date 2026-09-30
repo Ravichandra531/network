@@ -1,0 +1,11 @@
+listen-address=127.0.0.1,__MAC1_IP__
+bind-interfaces
+local=/__TEAM__.test/
+domain-needed
+bogus-priv
+host-record=app.__TEAM__.test,__MAC2_IP__
+host-record=api.__TEAM__.test,__MAC2_IP__
+no-resolv
+server=8.8.8.8
+log-queries
+log-facility=/tmp/dnsmasq.log

@@ -1,0 +1,34 @@
+upstream backend_pool {
+    server __MAC3_IP__:__PORT_A__ max_fails=2 fail_timeout=10s;
+    server __MAC4_IP__:__PORT_B__ max_fails=2 fail_timeout=10s;
+}
+
+log_format lb '$remote_addr -> $upstream_addr [$status] "$request" backend=$upstream_http_x_backend';
+
+server {
+    listen __HTTP_PORT__;
+    server_name app.__TEAM__.test api.__TEAM__.test;
+    return 301 https://$host:__HTTPS_PORT__$request_uri;
+}
+
+server {
+    listen __HTTPS_PORT__ ssl;
+    http2 on;   # nginx 1.25.1+; older: listen ... ssl http2;
+    server_name app.__TEAM__.test api.__TEAM__.test;
+
+    ssl_certificate     __PKI_DIR__/app.crt;
+    ssl_certificate_key __PKI_DIR__/app.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    access_log __BREW_PREFIX__/var/log/nginx/__TEAM___access.log lb;
+
+    location / {
+        proxy_pass http://backend_pool;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_connect_timeout 2s;
+        proxy_next_upstream error timeout http_502 http_503;
+    }
+}
