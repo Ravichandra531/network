@@ -19,3 +19,11 @@ Private Network Service Platform
 If you use 8080/8443, set them in `config/env.sh` and add the port to URLs (e.g. `https://app.team1.test:8443`).
 Never commit `*.key`.
 # network
+
+## Phase 2 · Mac 3
+
+- [Mac 3 setup order, report notes and remaining tests](docs/mac3-phase2.md)
+- [Redacted configuration references](configs/mac3/env.sh.example)
+- [Mac 3 evidence and its limits](evidence/phase2/mac3/README.md)
+
+Before deployment, use the latest IP addresses from **all four Macs** and synchronize every member's local settings. The Mac 3 references contain documentation addresses, not live lab settings.

@@ -1,0 +1,7 @@
+# Redacted prepared policy. Replace the table with the latest Mac 2 IP.
+# This is a project child-anchor file, never a replacement root ruleset.
+# Authorize the latest standby IP only during the coordinated migration stage.
+table <cn_edges> persist { 192.0.2.2 }
+pass in quick on lo0 proto tcp from any to any port { 3001, 3002 } keep state
+pass in quick inet proto tcp from <cn_edges> to any port { 3001, 3002 } keep state
+block return in quick proto tcp from any to any port { 3001, 3002 }

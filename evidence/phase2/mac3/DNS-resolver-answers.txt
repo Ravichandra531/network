@@ -1,0 +1,20 @@
+Mac 3 | Direct DNS checks collected 2026-11-24
+
+Redacted excerpts. Role labels replace real addresses and the project hostname.
+The user confirmed the current main-edge address before these checks.
+
+$ dig @<backup-resolver> <app-host> A +time=2 +tries=1 +noall +comments +answer
+status: NOERROR
+<app-host>.  30  IN  A  <current-main-edge-address>
+
+$ dig @<backup-resolver> <app-host> A +tcp +time=2 +tries=1 +noall +comments +answer
+status: NOERROR
+<app-host>.  30  IN  A  <current-main-edge-address>
+
+$ dig @<primary-resolver> <app-host> A +time=2 +tries=1 +noall +comments +answer
+status: NOERROR
+<app-host>.  30  IN  A  <old-main-edge-address>
+
+Historical mismatch: recheck both resolvers and synchronize current records.
+Mac 2's separate evidence can reflect a different collection time.
+Direct queries do not demonstrate ordinary client resolver failover or HTTPS.
