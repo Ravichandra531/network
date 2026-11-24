@@ -1,0 +1,4 @@
+# Redacted decoded excerpt of two real packets; relative time starts at the query. Role labels replace addresses and <app-host> replaces the hostname. Original packet bytes are private.
+packet	relative_seconds	source	destination	dns_id	response	query_name	answer_role	ttl_seconds
+1	0.000000	Mac4	Mac3	0x978c	false	<app-host>	-	-
+2	0.004184	Mac3	Mac4	0x978c	true	<app-host>	current-main-edge	30

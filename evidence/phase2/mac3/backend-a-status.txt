@@ -1,0 +1,15 @@
+Mac 3 | Local Backend A health, collected 2026-11-24
+
+Trimmed terminal excerpt. Omitted headers/timestamp do not affect the result.
+
+$ curl --noproxy '*' --fail --show-error --silent --connect-timeout 2 --max-time 5 -D - http://127.0.0.1:3001/api/status
+Exit code: 0
+HTTP/1.0 200 OK
+X-Backend: A
+Content-Type: application/json
+Cache-Control: no-store
+
+Response fields: backend="A", status="ok". Response time field omitted.
+
+Scope: loopback application health only. Remote edge access, backend failover
+and recovery need their own coordinated evidence.

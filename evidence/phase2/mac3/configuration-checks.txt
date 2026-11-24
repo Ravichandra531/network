@@ -1,0 +1,22 @@
+Mac 3 | Static configuration validation
+
+Redacted summary of original checks collected 2026-11-24:
+- Independent backup dnsmasq configuration: syntax check OK, exit 0.
+- Loopback client-cache configuration: syntax check OK, exit 0.
+- Prepared PF child-anchor policy with corrected edge allowlist: parse exit 0.
+- Prepared team env: zsh syntax exit 0.
+- Existing backend/backend.py matches the Mac 3 backend source byte for byte.
+- Backend source Python AST parsing: PASS.
+
+Public reference checks before submission:
+- env.sh.example: zsh and bash syntax checks PASS, exit 0.
+- client-cache.conf: dnsmasq syntax check PASS, exit 0.
+- dnsmasq-backup.conf: dnsmasq syntax check with only conf-file redirected to
+  this checkout's redacted records.conf in a temporary copy outside Git: PASS,
+  exit 0.
+- records-baseline.conf: dnsmasq syntax check PASS, exit 0.
+- backend-strict.pf: PF dry parse PASS, exit 0; no rules loaded.
+
+No live service, DNS setting, root PF ruleset, project allowlist or cache was
+changed during submission preparation. Parse success does not establish active
+firewall enforcement, rollback, DNS failover, TTL expiry or HA.
